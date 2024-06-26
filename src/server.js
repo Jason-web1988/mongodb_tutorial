@@ -15,9 +15,10 @@ const {generateFakeData} = require("../faker2");
 
 const server = async () => {
     try{
-        const {MONGO_URI} = process.env;
+        const {MONGO_URI, PORT} = process.env;
         console.log({MONGO_URI});
         if(!MONGO_URI) throw new Error("MONGO_URI is required!!!");
+        if(!PORT) throw new Error("PORT is required!!!");
 
         await mongoose.connect(MONGO_URI, {
             useNewUrlParser : true,
@@ -36,8 +37,8 @@ const server = async () => {
         //blogRoute.js안에도 설정할 수 있다.
         //app.use("/blog/:blogId/comment", commentRouter);
 
-        app.listen(3000, async () => {
-            console.log("Server Listening on Port 3000");
+        app.listen(PORT, async () => {
+            console.log(`Server Listening on Port ${PORT}`);
             // for(let i=0; i<20; i++){
             //     await generateFakeData(10, 1, 10);
             // }
