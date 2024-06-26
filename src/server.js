@@ -11,10 +11,14 @@ const app = express();
 //const {generateFakeData} = require("../faker");
 const {generateFakeData} = require("../faker2");
 
-const MONGO_URI = 'mongodb+srv://admin:1234@mongodbtutorial.hnsbnpp.mongodb.net/BlogService?retryWrites=true&w=majority&appName=MongodbTutorial';
+
 
 const server = async () => {
     try{
+        const {MONGO_URI} = process.env;
+        console.log({MONGO_URI});
+        if(!MONGO_URI) throw new Error("MONGO_URI is required!!!");
+
         await mongoose.connect(MONGO_URI, {
             useNewUrlParser : true,
             useUnifiedTopology : true,

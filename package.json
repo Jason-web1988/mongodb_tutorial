@@ -6,13 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/server.js",
-    "dev": "nodemon --ignore client.js ./src/server.js"
+    "dev": "env-cmd nodemon --ignore client.js ./src/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.2",
     "env": "^0.0.2",
+    "env-cmd": "^10.1.0",
     "express": "^4.19.2",
     "faker": "^5.5.3",
     "mongodb": "^6.7.0",

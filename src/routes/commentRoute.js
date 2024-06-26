@@ -14,7 +14,8 @@ commentRouter.post("/", async (req, res) =>{
     const session = await startSession();
     let comment;
     try{
-        //await session.withTransaction(async (res, req) => {
+        //transaction은 sesstion으로 처리해야 됨.
+        await session.withTransaction(async (res, req) => {
 
         
         const {blogId} = req.params;
@@ -59,7 +60,7 @@ commentRouter.post("/", async (req, res) =>{
     //        //Blog.updateOne({_id : blogId}, {$inc: {commentsCount : 1} })
     //     ]); 
 
-   // })
+    })
         await Promise.all([
             comment.save(),                                                                                 //$slice : -3 -> 최근 3개 뺴고 나머지 빼라
             Blog.updateOne(
